@@ -1,0 +1,139 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "@fontsource-variable/jetbrains-mono";
+@import "@fontsource-variable/plus-jakarta-sans";
+@import "@fontsource-variable/playfair-display";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+    --font-heading: 'Playfair Display Variable', serif;
+    --font-sans: 'Plus Jakarta Sans Variable', sans-serif;
+    --font-mono: 'JetBrains Mono Variable', monospace;
+    --color-ring: var(--ring);
+    --color-input: var(--input);
+    --color-border: var(--border);
+    --color-destructive: var(--destructive);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-accent: var(--accent);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-muted: var(--muted);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary: var(--secondary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-primary: var(--primary);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-popover: var(--popover);
+    --color-card-foreground: var(--card-foreground);
+    --color-card: var(--card);
+    --color-foreground: var(--foreground);
+    --color-background: var(--background);
+    --radius-sm: calc(var(--radius) * 0.6);
+    --radius-md: calc(var(--radius) * 0.8);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) * 1.4);
+}
+
+:root {
+    --background: #090b0e;
+    --foreground: #ede8df;
+    --card: #12161f;
+    --card-foreground: #ede8df;
+    --popover: #12161f;
+    --popover-foreground: #ede8df;
+    --primary: #c59b27;
+    --primary-foreground: #0a0d14;
+    --secondary: #161b26;
+    --secondary-foreground: #ede8df;
+    --muted: #161b26;
+    --muted-foreground: #a29f96;
+    --accent: #161b26;
+    --accent-foreground: #ede8df;
+    --destructive: #ff6b6b;
+    --border: #263043;
+    --input: #263043;
+    --ring: #d4af37;
+    --radius: 0.625rem;
+}
+
+.dark {
+    --background: #090B0E;
+    --foreground: #EDE8DF;
+    --card: #12161F;
+    --card-foreground: #EDE8DF;
+    --popover: #12161F;
+    --popover-foreground: #EDE8DF;
+    --primary: #C59B27;
+    --primary-foreground: #0A0D14;
+    --secondary: #161b26;
+    --secondary-foreground: #EDE8DF;
+    --muted: #161b26;
+    --muted-foreground: #8F96A3;
+    --accent: #161b26;
+    --accent-foreground: #EDE8DF;
+    --destructive: #FF6B6B;
+    --border: #263043;
+    --input: #263043;
+    --ring: #D4AF37;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+.game-board { container-type: inline-size; }
+.tile-grass { background: radial-gradient(circle at 30% 40%, #1d2e22 0 12%, transparent 13%), radial-gradient(circle at 70% 75%, #182a1e 0 10%, transparent 11%), #15241a; }
+.tile-path { background: radial-gradient(circle at 25% 30%, #4a4033 0 18%, transparent 20%), radial-gradient(circle at 72% 68%, #433a2e 0 20%, transparent 22%), #332c22; }
+.tile-wall { background: repeating-linear-gradient(0deg, #1f2330 0 46%, #12151d 46% 50%), #1f2330; box-shadow: inset 0 -3px 0 #0d0f15; }
+.tile-facade { background: linear-gradient(#6b3a2a 0 22%, transparent 22%), repeating-linear-gradient(90deg, #8a6a4a 0 16%, #5c4330 16% 20%), #6d5138; box-shadow: inset 0 0 0 1px rgba(212,175,55,0.28); }
+.tile-facade::after { content: ""; position: absolute; left: 18%; top: 46%; width: 18%; height: 26%; background: #f3c56b; box-shadow: 1.6em 0 0 #f3c56b; border-radius: 1px; }
+.tile-battlement { background: linear-gradient(#3c465c 0 18%, transparent 18%), repeating-linear-gradient(90deg, #2c3344 0 18%, #1a2030 18% 24%), #242b3a; box-shadow: inset 0 -5px 0 #10141c; }
+.tile-gate { background: radial-gradient(circle at 50% 0, transparent 0 42%, #4a3424 43% 100%), #1a120e; box-shadow: inset 0 0 0 2px #c6a15b; }
+.tile-wood { background: repeating-linear-gradient(90deg, #2e2118 0 23%, #24190f 23% 25%), #2b1f17; }
+.tile-rug { background: linear-gradient(#4a1420, #4a1420); box-shadow: inset 0 0 0 1px rgba(212,175,55,0.12); }
+.tile-stone { background: conic-gradient(#262a33 25%, #22262e 0 50%, #262a33 0 75%, #22262e 0); box-shadow: inset 0 0 0 1px #1a1d24; }
+.tile-water { background: linear-gradient(120deg, #0d1d2b 0%, #10283a 50%, #0d1d2b 100%); background-size: 300% 100%; animation: water-shift 5s ease-in-out infinite; }
+.tile-bridge { background: repeating-linear-gradient(0deg, #5a3f24 0 40%, #3a2716 40% 48%); box-shadow: inset 3px 0 0 #2a1c10, inset -3px 0 0 #2a1c10; }
+.tile-doorway { background: #0d0a08; }
+.theme-crypt .tile-stone { background: conic-gradient(#1d2026 25%, #1a1c21 0 50%, #1d2026 0 75%, #1a1c21 0); }
+.object-prop { background: rgba(15,19,28,0.55); color: #E5C158; box-shadow: 0 0 0 1px rgba(212,175,55,0.35), 0 0 14px rgba(229,193,88,0.12); }
+.object-door { background: #1a1410; color: #C49A6C; box-shadow: 0 0 0 1px #4a3520; }
+.ir-filter { filter: sepia(1) hue-rotate(-45deg) saturate(3.5) brightness(0.75) contrast(1.25); }
+.photo-filter { filter: grayscale(1) contrast(1.35) brightness(1.05); }
+.ir-vignette { background: radial-gradient(ellipse at center, rgba(42,8,12,0) 45%, rgba(120,10,20,0.55) 100%); mix-blend-mode: screen; animation: ir-scan 2.4s linear infinite; }
+.photo-grain { background: repeating-radial-gradient(circle at 50% 50%, rgba(255,255,255,0.03) 0 1px, transparent 1px 3px); box-shadow: inset 0 0 120px rgba(0,0,0,0.7); }
+.camera-flash { animation: camera-flash 380ms ease-out forwards; }
+.mark-pulse { animation: mark-pulse 1.4s ease-in-out infinite; }
+.hint-bob { animation: hint-bob 1.6s ease-in-out infinite; }
+.hero-step-a { animation: hero-step 130ms ease-out; }
+.hero-step-b { animation: hero-step-b 130ms ease-out; }
+.moat-shimmer { background: linear-gradient(120deg, #0a1520, #10283a, #0a1520); background-size: 300% 100%; animation: water-shift 4s ease-in-out infinite; }
+.mist { position: absolute; inset: -20%; pointer-events: none; background: radial-gradient(ellipse at 30% 60%, rgba(200,210,230,0.08), transparent 55%), radial-gradient(ellipse at 75% 40%, rgba(200,210,230,0.06), transparent 50%); }
+.mist-a { animation: mist-drift 28s ease-in-out infinite alternate; }
+.mist-b { animation: mist-drift 40s ease-in-out infinite alternate-reverse; opacity: 0.7; }
+@keyframes water-shift { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+@keyframes camera-flash { 0% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes mark-pulse { 0%,100% { opacity: 0.55; transform: scale(0.92); } 50% { opacity: 1; transform: scale(1.12); } }
+@keyframes hint-bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+@keyframes hero-step { 0% { transform: translateY(-6%); } 100% { transform: translateY(0); } }
+@keyframes hero-step-b { 0% { transform: translateY(-6%); } 100% { transform: translateY(0); } }
+@keyframes ir-scan { 0%,100% { opacity: 0.85; } 50% { opacity: 1; } }
+@keyframes mist-drift { 0% { transform: translateX(-4%) translateY(0); } 100% { transform: translateX(4%) translateY(-2%); } }
+@media (prefers-reduced-motion: reduce) {
+  .tile-water, .moat-shimmer, .mist-a, .mist-b, .mark-pulse, .hint-bob, .ir-vignette { animation: none; }
+  .camera-flash { animation-duration: 600ms; }
+}
+```css
+.tile-hedge { background: radial-gradient(circle at 30% 30%, #24452f 0 22%, transparent 24%), radial-gradient(circle at 70% 65%, #1f3d29 0 25%, transparent 27%), #16301f; box-shadow: inset 0 -4px 0 #0b1a10; }
+.tile-grave { background: linear-gradient(#3a3f4a, #3a3f4a) center 35% / 44% 58% no-repeat, linear-gradient(#2a2e36, #2a2e36) center 70% / 70% 12% no-repeat, #15241a; border-radius: 0; }
+.uv-filter { filter: hue-rotate(220deg) saturate(2.2) brightness(0.7) contrast(1.2); }
+.uv-vignette { background: radial-gradient(ellipse at center, rgba(60,0,90,0) 40%, rgba(110,30,180,0.5) 100%); mix-blend-mode: screen; animation: ir-scan 3s linear infinite; }
+.object-secret { background: rgba(26,11,38,0.85); color: #D49BFF; box-shadow: 0 0 0 1px rgba(180,77,255,0.6), 0 0 18px rgba(180,77,255,0.45); animation: mark-pulse 2.2s ease-in-out infinite; }
